@@ -15,13 +15,13 @@
     <title>Bookshelf Apps</title>
 </head>
 
-<body class="">
+<body>
     <header>
         <nav class="flex flex-col md:flex-row p-4 border-b">
-            <div class="icon font-bold">Jeremia's Library</div>
+            <div class="icon font-bold text-3xl">Jeremia's Library</div>
             <ul class="gap-4 ml-2 md:ml-auto block md:flex mt-1 md:mt-0">
-                <li class="min-w-[100px] cursor-pointer">Collection</li>
-                <li class="min-w-[100px] cursor-pointer">
+                <li class="min-w-[100px] cursor-pointer flex items-center p-1 md:p-0 md:justify-center hover:bg-black/50 hover:text-white">Collection</li>
+                <li class="min-w-[100px] cursor-pointer flex items-center p-1 md:p-0 md:justify-center hover:bg-black/50 hover:text-white">
                     <a href="https://cv-jeremia-daniel-silitonga.vercel.app/">Profile</a>
                 </li>
             </ul>
@@ -153,19 +153,31 @@
             </div>
         </div>
 
-        <button class="fixed bottom-4 right-4 bg-black text-white rounded p-3">
+        <button class="fixed bottom-4 right-4 bg-black text-white rounded p-3 show-modal">
             <i class="fa-solid fa-plus mr-2"></i> Tambahkan Buku
         </button>
+
+        <div class="fixed bottom-4 right-4 bg-green-600 notification-container p-2 h-24 w-min-h-48 rounded text-white border border-white fixed hidden">
+            <div class="notification-container-header">
+                <h1 class="font-bold">Ini adalah header</h1>
+            </div>
+            <div class="close-notification absolute top-0 right-0 border bg-red-600 p-1">
+                X
+            </div>
+            <div class="notification-container-body">
+                <p>Ini adalah Notification!</p>
+            </div>
+        </div>
     </main>
     <footer></footer>
 
 
     <div
-        class="modal-overlay fixed top-0 z-50 bg-black/50 text-white w-[100vw] h-[100vh] flex items-center justify-center">
+        class="modal-overlay fixed top-0 z-30 bg-black/50 text-white w-[100vw] h-[100vh] flex items-center justify-center hidden">
         <div class="modal-add-book w-3/4 max-h-5/6 bg-white text-black relative">
             <div class="modal-header h-1/6 p-2 px-4 flex items-center border-b mb-4 mt-2">
                 <h1 class="text-2xl font-bold">Tambahkan Buku</h1>
-                <div class="close-button bg-red-500 text-white p-2 px-4 absolute rounded-b-xl top-0 right-0 mr-4">X
+                <div class="close-button bg-red-500 text-white p-2 px-4 absolute rounded-b-xl top-0 right-0 mr-4 md:opacity-25 hover:opacity-100 cursor-pointer">X
                 </div>
             </div>
             <div class="modal-contents h-5/6 px-4 pb-4 overflow-y-auto">
@@ -183,7 +195,7 @@
                     <input type="number" min="1800" max="3000" step="1" value="2022" id="input-terbit-buku"
                         class="block p-2 border w-full mb-4">
 
-                    <input type="checkbox" name="input-selesai-buku" id="input-selesai-buku" required>
+                    <input type="checkbox" name="input-selesai-buku" id="input-selesai-buku">
                     <label for="input-selesai-buku">Selesai Baca?</label>
 
                     <input type="submit" class="block w-full p-2 bg-black text-white mt-4" id="button-simpan-buku"
