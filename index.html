@@ -1,17 +1,20 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
-<!--    <script src="https://kit.fontawesome.com/c4b7794d4e.js" crossorigin="anonymous"></script>-->
+    <!--    <script src="https://kit.fontawesome.com/c4b7794d4e.js" crossorigin="anonymous"></script>-->
     <title>Bookshelf Apps</title>
 </head>
+
 <body class="">
     <header>
         <nav class="flex flex-col md:flex-row p-4 border-b">
@@ -157,29 +160,36 @@
     <footer></footer>
 
 
-    <div class="modal-overlay fixed top-0 z-50 bg-black/50 text-white w-[100vw] h-[100vh] flex items-center justify-center">
-        <div class="modal-add-book w-3/4 h-5/6 bg-white text-black relative">
-            <div class="modal-header h-1/6 p-2 px-4 flex items-center">
+    <div
+        class="modal-overlay fixed top-0 z-50 bg-black/50 text-white w-[100vw] h-[100vh] flex items-center justify-center">
+        <div class="modal-add-book w-3/4 max-h-5/6 bg-white text-black relative">
+            <div class="modal-header h-1/6 p-2 px-4 flex items-center border-b mb-4 mt-2">
                 <h1 class="text-2xl font-bold">Tambahkan Buku</h1>
-                <div class="close-button bg-red-500 text-white p-2 px-4 absolute rounded-b-xl top-0 right-0 mr-4">X</div>
+                <div class="close-button bg-red-500 text-white p-2 px-4 absolute rounded-b-xl top-0 right-0 mr-4">X
+                </div>
             </div>
             <div class="modal-contents h-5/6 px-4 pb-4 overflow-y-auto">
-                <label for="input-nama-buku" class="block">Nama</label>
-                <input type="text" name="input-nama-buku" id="input-nama-buku" class="block p-2 border w-full mb-4">
+                <form>
 
-                <label for="input-judul-buku" class="block">Judul</label>
-                <input type="text" name="input-judul-buku" id="input-judul-buku" class="block p-2 border w-full mb-4">
+                    <label for="input-judul-buku" class="block">Judul</label>
+                    <input type="text" name="input-judul-buku" id="input-judul-buku"
+                        class="block p-2 border w-full mb-4" required>
 
-                <label for="input-penulis-buku" class="block">Penulis</label>
-                <input type="text" name="input-penulis-buku" id="input-penulis-buku" class="block p-2 border w-full mb-4">
+                    <label for="input-penulis-buku" class="block">Penulis</label>
+                    <input type="text" name="input-penulis-buku" id="input-penulis-buku"
+                        class="block p-2 border w-full mb-4" required>
 
-                <label for="input-terbit-buku">Tahun Terbit</label>
-                <input type="number" min="1800" max="3000" step="1" value="2022" id="input-terbit-buku" class="block p-2 border w-full mb-4">
+                    <label for="input-terbit-buku">Tahun Terbit</label>
+                    <input type="number" min="1800" max="3000" step="1" value="2022" id="input-terbit-buku"
+                        class="block p-2 border w-full mb-4">
 
-                <input type="checkbox" name="input-selesai-buku" id="input-selesai-buku">
-                <label for="input-selesai-buku">Selesai Baca?</label>
-                
-                <button class="block w-full p-2 bg-black text-white mt-4">Simpan</button>
+                    <input type="checkbox" name="input-selesai-buku" id="input-selesai-buku" required>
+                    <label for="input-selesai-buku">Selesai Baca?</label>
+
+                    <input type="submit" class="block w-full p-2 bg-black text-white mt-4" id="button-simpan-buku"
+                        value="Simpan">
+                </form>
+
 
             </div>
         </div>
@@ -187,4 +197,5 @@
 
     <script src="./assets/js/index.js"></script>
 </body>
+
 </html>
