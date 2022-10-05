@@ -8,6 +8,7 @@ let data = [];
 const filterInputNama = document.getElementById("nama-buku");
 const filterSelectTipe = document.getElementById("tipe-buku");
 const filterButton = document.querySelector(".tools-filter");
+const resetButton = document.querySelector(".tools-reset");
 
 // Modal
 const buttonToggleModal = document.querySelector(".show-modal");
@@ -74,29 +75,25 @@ const clearFilter = () => {
 const filterBuku = () => {
   if (filterInputNama.value) {
     if (filterSelectTipe.value != 0) {
-      console.log("Jalan 2");
       let status = filterSelectTipe.value == 1 ? false : true;
-      console.log(
-        data.filter(
-          (item) =>
-            item.isComplete == status &&
-            item.title.includes(filterInputNama.value)
-        )
+      data = data.filter(
+        (item) =>
+          item.isComplete == status &&
+          item.title.toLowerCase().includes(filterInputNama.value.toLowerCase())
       );
     } else {
-      console.log("jalan");
-      console.log(
-        data.filter((item) => item.title.includes(filterInputNama.value))
+      data = data.filter((item) =>
+        item.title.toLowerCase().includes(filterInputNama.value.toLowerCase())
       );
     }
   } else {
-    console.log(data);
+    data = [...data];
   }
+  document.dispatchEvent(new Event(RENDER_EVENT));
 };
 
 const saveDataToStorage = () => {
   if (isStorageExist()) {
-    // data.push(newItem);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
   document.dispatchEvent(new Event(RENDER_EVENT));
@@ -200,4 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
   closeButtonToggleModal.addEventListener("click", toggleModalTambahBuku);
 
   filterButton.addEventListener("click", filterBuku);
+  resetButton.addEventListener("click", () => {
+    clearFilter();
+    getDataFromStorage();
+  });
 });

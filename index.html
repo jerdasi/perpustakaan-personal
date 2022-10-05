@@ -20,8 +20,11 @@
         <nav class="flex flex-col md:flex-row p-4 border-b">
             <div class="icon font-bold text-3xl">Jeremia's Library</div>
             <ul class="gap-4 ml-2 md:ml-auto block md:flex mt-1 md:mt-0">
-                <li class="min-w-[100px] cursor-pointer flex items-center p-1 md:p-0 md:justify-center hover:bg-black/50 hover:text-white">Collection</li>
-                <li class="min-w-[100px] cursor-pointer flex items-center p-1 md:p-0 md:justify-center hover:bg-black/50 hover:text-white">
+                <li
+                    class="min-w-[100px] cursor-pointer flex items-center p-1 md:p-0 md:justify-center hover:bg-black/50 hover:text-white">
+                    Collection</li>
+                <li
+                    class="min-w-[100px] cursor-pointer flex items-center p-1 md:p-0 md:justify-center hover:bg-black/50 hover:text-white">
                     <a href="https://cv-jeremia-daniel-silitonga.vercel.app/">Profile</a>
                 </li>
             </ul>
@@ -42,7 +45,10 @@
                 <option value="2">Selesai Dibaca</option>
             </select>
 
-            <button class="tools-filter w-1/2 md:w-1/4 p-2 mt-4 bg-black text-white">Filter</button>
+            <div class="flex gap-4">
+                <button class="tools-filter w-1/2 md:w-1/4 p-2 mt-4 bg-black text-white">Filter</button>
+                <button class="tools-reset w-1/2 md:w-1/4 p-2 mt-4 bg-red-600 text-white">Reset</button>
+            </div>
         </fieldset>
         <p class="px-4">Menampilkan Seluruh Koleksi </p>
 
@@ -157,7 +163,8 @@
             <i class="fa-solid fa-plus mr-2"></i> Tambahkan Buku
         </button>
 
-        <div class="fixed bottom-4 right-4 bg-green-600 notification-container p-2 h-24 w-min-h-48 rounded text-white border border-white fixed hidden">
+        <div
+            class="fixed bottom-4 right-4 bg-green-600 notification-container p-2 h-24 w-min-h-48 rounded text-white border border-white fixed hidden">
             <div class="notification-container-header">
                 <h1 class="font-bold">Ini adalah header</h1>
             </div>
@@ -177,7 +184,9 @@
         <div class="modal-add-book w-3/4 max-h-5/6 bg-white text-black relative">
             <div class="modal-header h-1/6 p-2 px-4 flex items-center border-b mb-4 mt-2">
                 <h1 class="text-2xl font-bold">Tambahkan Buku</h1>
-                <div class="close-button bg-red-500 text-white p-2 px-4 absolute rounded-b-xl top-0 right-0 mr-4 md:opacity-25 hover:opacity-100 cursor-pointer">X
+                <div
+                    class="close-button bg-red-500 text-white p-2 px-4 absolute rounded-b-xl top-0 right-0 mr-4 md:opacity-25 hover:opacity-100 cursor-pointer">
+                    X
                 </div>
             </div>
             <div class="modal-contents h-5/6 px-4 pb-4 overflow-y-auto">
