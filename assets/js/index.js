@@ -1,6 +1,9 @@
 const RENDER_EVENT = "render-buku";
 const STORAGE_KEY = "ALL_BOOKS";
 
+const TITLE_MODAL_ADD = "Tambahkan Buku";
+const TITLE_MODAL_EDIT = "Edit Buku";
+
 // Data
 let data = [];
 
@@ -14,6 +17,7 @@ const resetButton = document.querySelector(".tools-reset");
 const buttonToggleModal = document.querySelector(".show-modal");
 const closeButtonToggleModal = document.querySelector(".close-button");
 const modalTambahBuku = document.querySelector(".modal-overlay");
+const modalHeader = modalTambahBuku.querySelector(".modal-header h1");
 const inputNama = document.getElementById("input-nama-buku");
 const inputJudul = document.getElementById("input-judul-buku");
 const inputPenulis = document.getElementById("input-penulis-buku");
@@ -23,6 +27,7 @@ const buttonSimpan = document.getElementById("button-simpan-buku");
 
 // Notification
 const notification = document.querySelector(".notification-container");
+const closeNotification = document.querySelector(".close-notification");
 
 // Content Container
 const mainContainer = document.querySelector(".content-wrapper");
@@ -51,6 +56,10 @@ const showNotification = ({ headerMsg = "", bodyMsg = "" }) => {
     notification.classList.add("hidden");
   }, 5000);
 };
+
+closeNotification.addEventListener("click", () => {
+  notification.classList.add("hidden");
+});
 
 const toggleModalTambahBuku = () => {
   const classTambah = modalTambahBuku.classList.contains("hidden")
@@ -109,6 +118,27 @@ const getDataFromStorage = () => {
   }
 };
 
+const tampilkanBuku = (indexBuku) => {
+  modalHeader.innerText = TITLE_MODAL_EDIT;
+  const book = data[indexBuku];
+  inputJudul.value = book.title;
+  inputPenulis.value = book.author;
+  inputTahun.value = book.year;
+  inputStatusBaca.checked = book.isComplete;
+  submitForm.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    editBuku(indexBuku);
+
+    setTimeout(() => {
+      showNotification({
+        headerMsg: "Berhasil",
+        bodyMsg: "Berhasil Mengedit Buku!",
+      });
+    }, 100);
+  });
+  toggleModalTambahBuku();
+};
+
 const tambahBuku = () => {
   let book = {
     id: +new Date(),
@@ -124,7 +154,9 @@ const tambahBuku = () => {
   toggleModalTambahBuku();
 };
 
-const editBuku = () => {};
+const editBuku = (indexBuku) => {
+  console.log(data[indexBuku]);
+};
 
 const hapusBuku = (indexBuku) => {
   let buku = [...data];
@@ -155,10 +187,15 @@ document.addEventListener(RENDER_EVENT, () => {
                       }-500 border rounded text-white">${
         item.isComplete ? "Selesai" : "Belum Selesai"
       }</div>
-                      <button class="button-delete bg-red-600 border rounded text-white p-2 ml-auto">
-                          <i class="fa fa-trash"></i>
-                      </button>
-                  </div>
+                      <div class="card-tools ml-auto">
+                        <button class="button-edit bg-blue-600 border rounded text-white p-2">
+                          <i class="fa fa-pencil"></i>
+                        </button>
+                        <button class="button-delete bg-red-600 border rounded text-white p-2">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                            </div>
+                        </div>
               </div>
           </div>
           `;
@@ -168,6 +205,11 @@ document.addEventListener(RENDER_EVENT, () => {
     document.querySelectorAll(".button-delete").forEach((item, index) => {
       item.addEventListener("click", () => {
         hapusBuku(index);
+      });
+    });
+    document.querySelectorAll(".button-edit").forEach((item, index) => {
+      item.addEventListener("click", () => {
+        tampilkanBuku(index);
       });
     });
   } else {
@@ -192,7 +234,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100);
   });
 
-  buttonToggleModal.addEventListener("click", toggleModalTambahBuku);
+  buttonToggleModal.addEventListener("click", () => {
+    modalHeader.innerText = TITLE_MODAL_ADD;
+    clearModalTambahBuku();
+    toggleModalTambahBuku();
+  });
 
   closeButtonToggleModal.addEventListener("click", toggleModalTambahBuku);
 
