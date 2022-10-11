@@ -222,6 +222,21 @@ const hapusBuku = (indexBuku) => {
     }
 };
 
+// Event Change Status
+const changeStatus = (indexBuku) => {
+  let book = data[indexBuku];
+  const allData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  const index = allData.findIndex((item) => item.id == book.id);
+  
+  book = allData[index];
+  book.isComplete = !book.isComplete
+  allData[index] = book;
+  data = [...allData]
+  saveDataToStorage();
+
+  console.log(indexBuku);
+}
+
 // Register Custom Event named Render Event to Render Card/Book in Library Container
 document.addEventListener(RENDER_EVENT, () => {
     belumContainer.innerHTML = "";
@@ -244,19 +259,23 @@ document.addEventListener(RENDER_EVENT, () => {
           <p class="font-medium">${item.title}</p>
           <p class="">${item.author} - ${item.year}</p>
           <div class="description-details flex">
-              <div class="p-2 bg-${
-                  item.isComplete ? "green" : "red"
-              }-500 border rounded text-white">${
-            item.isComplete ? "Selesai" : "Belum Selesai"
-        }</div>
+              
               <div class="card-tools ml-auto flex gap-2">
-                
               </div>
             </div>
       </div>
           `;
 
         el.innerHTML = template;
+        let pill = document.createElement("div");
+        pill.className = `p-2 bg-${item.isComplete ? "green" : "red"}-500 border rounded text-white`
+        pill.addEventListener("click", () => {
+          changeStatus(index)
+        })
+        pill.innerText = item.isComplete? "Selesai" : "Belum Selesai"
+        el.querySelector(".description-details").insertAdjacentElement("afterbegin", pill)
+
+
         let btnEdit = document.createElement("button");
         btnEdit.className =
             "button-edit bg-blue-600 border rounded text-white p-2";
@@ -274,8 +293,6 @@ document.addEventListener(RENDER_EVENT, () => {
             ev.preventDefault();
             hapusBuku(index);
         });
-
-        btnEdit.insertAdjacentElement("afterend", btnHapus);
 
         el.querySelector(".card-tools").appendChild(btnEdit);
         el.querySelector(".card-tools").appendChild(btnHapus);
